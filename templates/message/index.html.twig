@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Message index{% endblock %}
-
+{% block title %}Gestion des Messages{% endblock %}
+{% block pagetitle %}Gestion des Messages{% endblock %}
+{% block navmenu %}
+  <a href="{{ path('home') }}">Retour au menu principal</a>
+{% endblock %}
 {% block body %}
     <h1>Message index</h1>
 

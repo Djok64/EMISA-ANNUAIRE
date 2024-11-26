@@ -12,6 +12,10 @@
         {% endblock %}
     </head>
     <body>
+      <header>
+      <h1>{% block pagetitle %}h1 a definir{% endblock %}</h1>
+      {% block navmenu %}{% endblock %}</header>
         {% block body %}{% endblock %}
+        {% block footer %}{% endblock %}
     </body>
 </html>

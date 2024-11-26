@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+Annuaire Back office
+{% endblock %}
+{% block pagetitle %}
+Back Office Annuaire EMISA
+{% endblock %}
+{% block navmenu %} 
+<ul>
+<li>
+<a href="{{ path('app_student_index') }}">Gestion des Etudiants</a>
+</li>
+<li>
+<a href="{{ path('app_course_index') }}">Gestion des Formations</a>
+</li>
+<li>
+<a href="{{ path('app_message_index') }}">Gestion des Messages</a>
+</li>
+</ul>
+{% endblock %}

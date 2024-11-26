@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Student index{% endblock %}
-
+{% block title %}Gestion Etudiants{% endblock %}
+{% block pagetitle %}Gestion Etudiants{% endblock %}
+{% block navmenu %}
+  <a href="{{ path('home') }}">Retour au menu principal</a>
+{% endblock %}
 {% block body %}
     <h1>Student index</h1>
 
@@ -27,9 +30,15 @@
                 <td>{{ student.id }}</td>
                 <td>{{ student.firstName }}</td>
                 <td>{{ student.lastName }}</td>
-                <td>{{ student.birthDay ? student.birthDay|date('Y-m-d') : '' }}</td>
+                <td>{{ student.birthDay ? student.birthDay|date('d-m-Y') : '' }}</td>
                 <td>{{ student.promo }}</td>
-                <td>{{ student.photo }}</td>
+                <td>
+                    {% if student.photo %}
+                        <img src="{{ asset('uploads/photos/' ~ student.photo) }}" alt="Photo de {{ student.lastName }}" style="max-width: 200px;">
+                    {% else %}
+                        Pas de photo disponible
+                    {% endif %}
+                </td>
                 <td>{{ student.company }}</td>
                 <td>{{ student.description }}</td>
                 <td>{{ student.createdAt ? student.createdAt|date('Y-m-d H:i:s') : '' }}</td>

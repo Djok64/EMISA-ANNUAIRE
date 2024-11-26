@@ -11,6 +11,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 
 class StudentType extends AbstractType
@@ -23,7 +25,11 @@ class StudentType extends AbstractType
       ->add('birthDay', null, [
         'widget' => 'single_text',
       ])
-      ->add('promo')
+      ->add('promo', ChoiceType::class, [
+        'choices' => $this->getYearsRange(2024, 2050),
+        'placeholder' => 'Sélectionnez une année',
+        'label' => 'Année de la promo'
+      ])
       // Systeme upload fichier il faut adapter le controller également
       ->add('photo', FileType::class, [
         'label' => 'Photo de profil (JPG/PNG)',
@@ -53,6 +59,15 @@ class StudentType extends AbstractType
       )
 
     ;
+  }
+
+  private function getYearsRange(int $start, int $end): array
+  {
+    $years = [];
+    for ($year = $start; $year <= $end; $year++) {
+      $years[$year] = $year;
+    }
+    return $years;
   }
 
   public function configureOptions(OptionsResolver $resolver): void

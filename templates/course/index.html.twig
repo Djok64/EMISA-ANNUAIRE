@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Course index{% endblock %}
-
+{% block pagetitle %}Gestion des Formations{% endblock %}
+{% block navmenu %}
+  <a href="{{ path('home') }}">Retour au menu principal</a>
+{% endblock %}
 {% block body %}
     <h1>Course index</h1>
 
