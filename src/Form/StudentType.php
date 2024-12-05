@@ -25,6 +25,7 @@ class StudentType extends AbstractType
       ->add('birthDay', null, [
         'widget' => 'single_text',
       ])
+      //Selection de l'année volet deroulant 
       ->add('promo', ChoiceType::class, [
         'choices' => $this->getYearsRange(2024, 2050),
         'placeholder' => 'Sélectionnez une année',

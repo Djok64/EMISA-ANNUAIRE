@@ -1,27 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Gestion Etudiants{% endblock %}
-{% block pagetitle %}Gestion Etudiants{% endblock %}
-{% block navmenu %}
-  <a href="{{ path('home') }}">Retour au menu principal</a>
-{% endblock %}
 {% block body %}
-    <h1>Student index</h1>
+<div class="container mt-4">
+    <h1 class="mb-4">Gestion des étudiants</h1>
 
-    <table class="table">
-        <thead>
+    <table class="datatable table table-striped table-hover">
+        <thead class="thead-dark">
             <tr>
                 <th>Id</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>BirthDay</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Date de naissance</th>
                 <th>Promo</th>
                 <th>Photo</th>
-                <th>Company</th>
+                <th>Entreprise</th>
                 <th>Description</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Créé le</th>
+                <th>Mis à jour le</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -30,13 +27,13 @@
                 <td>{{ student.id }}</td>
                 <td>{{ student.firstName }}</td>
                 <td>{{ student.lastName }}</td>
-                <td>{{ student.birthDay ? student.birthDay|date('d-m-Y') : '' }}</td>
+                <td>{{ student.birthDay ? student.birthDay|date('Y-m-d') : '' }}</td>
                 <td>{{ student.promo }}</td>
                 <td>
                     {% if student.photo %}
-                        <img src="{{ asset('uploads/photos/' ~ student.photo) }}" alt="Photo de {{ student.lastName }}" style="max-width: 200px;">
+                        <img src="{{ asset('uploads/photos/' ~ student.photo) }}" style="width: 100px; height: auto;">
                     {% else %}
-                        Pas de photo disponible
+                        N/A
                     {% endif %}
                 </td>
                 <td>{{ student.company }}</td>
@@ -44,17 +41,20 @@
                 <td>{{ student.createdAt ? student.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ student.updatedAt ? student.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_student_show', {'id': student.id}) }}">show</a>
-                    <a href="{{ path('app_student_edit', {'id': student.id}) }}">edit</a>
+                    <a class="btn btn-info btn-sm" href="{{ path('app_student_show', {'id': student.id}) }}">Afficher</a>
+                    <a class="btn btn-warning btn-sm" href="{{ path('app_student_edit', {'id': student.id}) }}">Éditer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">no records found</td>
+                <td colspan="11" class="text-center">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_student_new') }}">Create new</a>
+    <div class="text-end">
+        <a class="btn btn-success" href="{{ path('app_student_new') }}">Créer un nouvel étudiant</a>
+    </div>
+</div>
 {% endblock %}

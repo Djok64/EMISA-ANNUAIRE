@@ -1,22 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Gestion des Messages{% endblock %}
-{% block pagetitle %}Gestion des Messages{% endblock %}
-{% block navmenu %}
-  <a href="{{ path('home') }}">Retour au menu principal</a>
-{% endblock %}
-{% block body %}
-    <h1>Message index</h1>
 
+{% block body %}
+
+    <h1>Gestion des Messages</h1>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Object</th>
-                <th>Content</th>
-                <th>CreatedAt</th>
-                <th>Expeditor</th>
-                <th>actions</th>
+                <th>Objet</th>
+                <th>Contenue</th>
+                <th>Créer le </th>
+                <th>Expediteur</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -34,11 +31,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Aucun Message trouvé...</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_message_new') }}">Create new</a>
+    <a href="{{ path('app_message_new') }}">Créer nouveau message</a>
 {% endblock %}

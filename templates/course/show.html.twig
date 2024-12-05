@@ -1,10 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Course{% endblock %}
+{% block title %}Formation{% endblock %}
 
 {% block body %}
-    <h1>Course</h1>
-
+    <h1>Formation</h1>
     <table class="table">
         <tbody>
             <tr>
@@ -12,7 +11,7 @@
                 <td>{{ course.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>Titre</th>
                 <td>{{ course.title }}</td>
             </tr>
             <tr>
@@ -20,19 +19,19 @@
                 <td>{{ course.description }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Créer le</th>
                 <td>{{ course.createdAt ? course.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
+                <th>Mis à jour le</th>
                 <td>{{ course.updatedAt ? course.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_course_index') }}">back to list</a>
+    <a href="{{ path('app_course_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_course_edit', {'id': course.id}) }}">edit</a>
+    <a href="{{ path('app_course_edit', {'id': course.id}) }}">Modifier</a>
 
     {{ include('course/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Utilisateurs{% endblock %}
+
+{% block body %}
+  <div class="container mt-4">
+    <h1>Gestions des Utilisateurs</h1>
+    <table class="datatable table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Mot de passe</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.password }}</td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a>
+                    <a class="btn btn-warning btn-sm" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5" class="text-center">Aucun Utilisateur trouvé...</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-end">
+    <a class="btn btn-success"  href="{{ path('app_user_new') }}">Créer nouveau</a>
+    </div>
+</div>
+{% endblock %}

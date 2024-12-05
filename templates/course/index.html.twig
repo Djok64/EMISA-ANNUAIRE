@@ -1,22 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Course index{% endblock %}
-{% block pagetitle %}Gestion des Formations{% endblock %}
-{% block navmenu %}
-  <a href="{{ path('home') }}">Retour au menu principal</a>
-{% endblock %}
+{% block title %}Gestion des Formations{% endblock %}
 {% block body %}
-    <h1>Course index</h1>
-
+    
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
+                <th>Titre</th>
                 <th>Description</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Créer le</th>
+                <th>Mis a jour le</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -28,17 +23,17 @@
                 <td>{{ course.createdAt ? course.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ course.updatedAt ? course.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_course_show', {'id': course.id}) }}">show</a>
-                    <a href="{{ path('app_course_edit', {'id': course.id}) }}">edit</a>
+                    <a href="{{ path('app_course_show', {'id': course.id}) }}">Voir</a>
+                    <a href="{{ path('app_course_edit', {'id': course.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Aucune formation trouvée...</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_course_new') }}">Create new</a>
+    <a href="{{ path('app_course_new') }}">Créer nouveau</a>
 {% endblock %}

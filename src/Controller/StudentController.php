@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Student;
+use App\Entity\Log;
 use App\Form\StudentType;
 use App\Repository\StudentRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/student')]
+#[Route('/admin/student')]
 final class StudentController extends AbstractController
 {
   #[Route(name: 'app_student_index', methods: ['GET'])]
@@ -49,6 +50,12 @@ final class StudentController extends AbstractController
       $student->setupdatedAt(new \DateTimeImmutable());
       $entityManager->persist($student);
       $entityManager->flush();
+      $log = new Log($entityManager);
+      $log->log(
+        $this->getUser(),
+        'Create',
+        'Create student ID' . ' ' . $student->getId() . ' ' . 'L\étudiant ' . $student->getFirstName() . ' ' . $student->getLastName() . 'a était créer avec succès'
+      );
 
       return $this->redirectToRoute('app_student_index', [], Response::HTTP_SEE_OTHER);
     }
@@ -60,8 +67,14 @@ final class StudentController extends AbstractController
   }
 
   #[Route('/{id}', name: 'app_student_show', methods: ['GET'])]
-  public function show(Student $student): Response
+  public function show(Student $student, EntityManagerInterface $entityManager): Response
   {
+    $log = new Log($entityManager);
+    $log->log(
+      $this->getUser(),
+      'Read',
+      'Read student ID' . ' ' . $student->getId() . ' ' . 'L\étudiant ' . $student->getFirstName() . ' ' . $student->getLastName() . 'a était consulté avec succès'
+    );
     return $this->render('student/show.html.twig', [
       'student' => $student,
     ]);
@@ -74,7 +87,18 @@ final class StudentController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+      $student->setupdatedAt(new \DateTimeImmutable());
       $entityManager->flush();
+      //ici on utilise le logger 
+      $log = new Log($entityManager); //on instancie le logger ici on ne peu l'utiliser avec le constructeur etant une Entity
+      $log->log( //on utilise la methode log 
+        $this->getUser(), //on récupère l'utilisateur premier paramètre de log
+        'Update', //second paramètre  rempli avec ce string
+        'Update student ID' . ' ' . $student->getId() . ' ' .
+          'L\étudiant ' . $student->getFirstName() . ' ' . $student->getLastName()
+          . 'a était modifié avec succès' //3eme paramètre rempli avec ce string
+      );
+      $this->addFlash('success', 'L\étudiant a était modifié avec succès'); // est censé faire un message a l'utilisateur mais il faut modofier le html.twig associé du formulaire
 
       return $this->redirectToRoute('app_student_index', [], Response::HTTP_SEE_OTHER);
     }

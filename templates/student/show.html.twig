@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Student{% endblock %}
+{% block title %}Etudiant{% endblock %}
 
 {% block body %}
-    <h1>Student</h1>
-
+    
+    <h1>Etudiant</h1>
     <table class="table">
         <tbody>
             <tr>
@@ -12,15 +12,15 @@
                 <td>{{ student.id }}</td>
             </tr>
             <tr>
-                <th>FirstName</th>
+                <th>Nom</th>
                 <td>{{ student.firstName }}</td>
             </tr>
             <tr>
-                <th>LastName</th>
+                <th>Prénom</th>
                 <td>{{ student.lastName }}</td>
             </tr>
             <tr>
-                <th>BirthDay</th>
+                <th>Date de naissance</th>
                 <td>{{ student.birthDay ? student.birthDay|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
@@ -32,7 +32,7 @@
                 <td>{{ student.photo }}</td>
             </tr>
             <tr>
-                <th>Company</th>
+                <th>Entreprise</th>
                 <td>{{ student.company }}</td>
             </tr>
             <tr>
@@ -40,19 +40,19 @@
                 <td>{{ student.description }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Créer le</th>
                 <td>{{ student.createdAt ? student.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
+                <th>Mis à jour le</th>
                 <td>{{ student.updatedAt ? student.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_student_index') }}">back to list</a>
+    <a href="{{ path('app_student_index') }}">Retour a la liste</a>
 
-    <a href="{{ path('app_student_edit', {'id': student.id}) }}">edit</a>
+    <a href="{{ path('app_student_edit', {'id': student.id}) }}">Modifier</a>
 
     {{ include('student/_delete_form.html.twig') }}
 {% endblock %}
