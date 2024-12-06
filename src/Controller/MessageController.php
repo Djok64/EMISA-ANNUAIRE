@@ -52,24 +52,26 @@ final class MessageController extends AbstractController
     ]);
   }
 
-  #[Route('/{id}/edit', name: 'app_message_edit', methods: ['GET', 'POST'])]
-  public function edit(Request $request, Message $message, EntityManagerInterface $entityManager): Response
-  {
-    $form = $this->createForm(MessageType::class, $message);
-    $form->handleRequest($request);
+  //Les message ne peuvent pas être éditer par une autre personne cette fonction est donc supprimé
+  // #[Route('/{id}/edit', name: 'app_message_edit', methods: ['GET', 'POST'])]
+  // public function edit(Request $request, Message $message, EntityManagerInterface $entityManager): Response
+  // {
+  //   $form = $this->createForm(MessageType::class, $message);
+  //   $form->handleRequest($request);
 
-    if ($form->isSubmitted() && $form->isValid()) {
-      $entityManager->flush();
+  //   if ($form->isSubmitted() && $form->isValid()) {
+  //     $entityManager->flush();
 
-      return $this->redirectToRoute('app_message_index', [], Response::HTTP_SEE_OTHER);
-    }
+  //     return $this->redirectToRoute('app_message_index', [], Response::HTTP_SEE_OTHER);
+  //   }
 
-    return $this->render('message/edit.html.twig', [
-      'message' => $message,
-      'form' => $form,
-    ]);
-  }
+  //   return $this->render('message/edit.html.twig', [
+  //     'message' => $message,
+  //     'form' => $form,
+  //   ]);
+  // }
 
+  //la suppresion est conservé car les log pourront attester d'une suppression
   #[Route('/{id}', name: 'app_message_delete', methods: ['POST'])]
   public function delete(Request $request, Message $message, EntityManagerInterface $entityManager): Response
   {

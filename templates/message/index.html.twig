@@ -25,8 +25,7 @@
                 <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ message.expeditor }}</td>
                 <td>
-                    <a href="{{ path('app_message_show', {'id': message.id}) }}">show</a>
-                    <a href="{{ path('app_message_edit', {'id': message.id}) }}">edit</a>
+                    <a href="{{ path('app_message_show', {'id': message.id}) }}">Voir</a>
                 </td>
             </tr>
         {% else %}

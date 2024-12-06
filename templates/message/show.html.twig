@@ -14,27 +14,25 @@
                 <td>{{ message.id }}</td>
             </tr>
             <tr>
-                <th>Object</th>
+                <th>Objet</th>
                 <td>{{ message.object }}</td>
             </tr>
             <tr>
-                <th>Content</th>
+                <th>Contenue</th>
                 <td>{{ message.content }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Créer le</th>
                 <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Expeditor</th>
+                <th>Expediteur</th>
                 <td>{{ message.expeditor }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_message_index') }}">back to list</a>
-
-    <a href="{{ path('app_message_edit', {'id': message.id}) }}">edit</a>
+    <a href="{{ path('app_message_index') }}">Retour à la liste</a>
 
     {{ include('message/_delete_form.html.twig') }}
 {% endblock %}
