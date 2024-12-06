@@ -14,12 +14,19 @@ class MessageType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options): void
   {
     $builder
-      ->add('object')
-      ->add('content')
-      ->add('expeditor')
+      ->add('object', null, [
+        'label' => 'Objet',
+      ])
+      ->add('content', null, [
+        'label' => 'Votre message',
+      ])
+      ->add('expeditor', null, [
+        'label' => 'Expéditeur',
+      ])
       ->add('student', EntityType::class, [
         'class' => Student::class,
-        'choice_label' => 'id',
+        'choice_label' => 'Firstname',
+        'label' => 'Destinataire',
       ])
     ;
   }

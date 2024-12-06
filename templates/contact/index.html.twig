@@ -1,21 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact index{% endblock %}
+{% block title %}Gestion des contacts{% endblock %}
 
 {% block body %}
-    <h1>Contact index</h1>
+<div class="container mt-4">
+    <h1 class="mb-4">Gestion des contacts</h1>
 
-    <table class="table">
-        <thead>
+    <table class="datatable table table-striped table-hover">
+        <thead class="thead-dark">
             <tr>
                 <th>Id</th>
-                <th>Nom</th>
                 <th>Prénom</th>
+                <th>Nom</th>
                 <th>Email</th>
-                <th>Téléhone</th>
-                <th>Conditions accepté</th>
-                <th>Créer le</th>
-                <th>Mis à jour le</th>
+                <th>Téléphone</th>
+                <th>Confidentialité acceptée</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -27,21 +26,35 @@
                 <td>{{ contact.lastName }}</td>
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.phone }}</td>
-                <td>{{ contact.privacyAccepted ? 'Yes' : 'No' }}</td>
-                <td>{{ contact.createdAt ? contact.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ contact.updatedAt ? contact.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ contact.privacyAccepted ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a href="{{ path('app_contact_show', {'id': contact.id}) }}">show</a>
-                    <a href="{{ path('app_contact_edit', {'id': contact.id}) }}">edit</a>
+                    <a class="btn btn-info btn-sm" href="{{ path('app_contact_show', {'id': contact.id}) }}">Afficher</a>
+                    <a class="btn btn-warning btn-sm" href="{{ path('app_contact_edit', {'id': contact.id}) }}">Éditer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="8" class="text-center">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_contact_new') }}">Create new</a>
+    <div class="text-end">
+        <a class="btn btn-success" href="{{ path('app_contact_new') }}">Créer un nouveau contact</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $('.datatable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/fr-FR.json'
+                }
+            });
+        });
+    </script>
 {% endblock %}

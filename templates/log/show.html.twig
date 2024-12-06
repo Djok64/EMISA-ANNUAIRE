@@ -12,11 +12,11 @@
                 <td>{{ log.id }}</td>
             </tr>
             <tr>
-                <th>Author</th>
+                <th>Auteur</th>
                 <td>{{ log.author }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Créer le</th>
                 <td>{{ log.createdAt ? log.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
@@ -24,12 +24,12 @@
                 <td>{{ log.description }}</td>
             </tr>
             <tr>
-                <th>ActionType</th>
+                <th>Action Réalisé</th>
                 <td>{{ log.actionType }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_log_index') }}">back to list</a>
+    <a href="{{ path('app_log_index') }}">Retour a la liste</a>
 
 {% endblock %}

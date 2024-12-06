@@ -11,30 +11,26 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MenuType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
-        $builder
-            ->add('title')
-            ->add('url')
-            ->add('active')
-            ->add('position')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('page', EntityType::class, [
-                'class' => Page::class,
-                'choice_label' => 'id',
-            ])
-        ;
-    }
+  public function buildForm(FormBuilderInterface $builder, array $options): void
+  {
+    $builder
+      ->add('title', null, [
+        'label' => 'Titre',
+      ])
+      ->add('url')
+      ->add('active')
+      ->add('position')
+      ->add('page', EntityType::class, [
+        'class' => Page::class,
+        'choice_label' => 'title',
+      ])
+    ;
+  }
 
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => Menu::class,
-        ]);
-    }
+  public function configureOptions(OptionsResolver $resolver): void
+  {
+    $resolver->setDefaults([
+      'data_class' => Menu::class,
+    ]);
+  }
 }

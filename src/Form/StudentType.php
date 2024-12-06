@@ -20,10 +20,15 @@ class StudentType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options): void
   {
     $builder
-      ->add('firstName')
-      ->add('lastName')
+      ->add('firstName', null, [
+        'label' => 'Nom', // Label en français
+      ])
+      ->add('lastName', null, [
+        'label' => 'Prénom',
+      ])
       ->add('birthDay', null, [
         'widget' => 'single_text',
+        'label' => 'Date de naissance',
       ])
       //Selection de l'année volet deroulant 
       ->add('promo', ChoiceType::class, [
@@ -48,13 +53,16 @@ class StudentType extends AbstractType
           ]),
         ],
       ])
-      ->add('company')
+      ->add('company', null, [
+        'label' => 'Entreprise ',
+      ])
       ->add('description')
       ->add(
         'course',
         EntityType::class,
         [
           'class' => Course::class,
+          'label' => 'Formation',
           'choice_label' => 'title'
         ]
       )

@@ -12,11 +12,11 @@
                 <td>{{ page.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>Titre</th>
                 <td>{{ page.title }}</td>
             </tr>
             <tr>
-                <th>Content</th>
+                <th>Contenu</th>
                 <td>{{ page.content }}</td>
             </tr>
             <tr>
@@ -32,19 +32,19 @@
                 <td>{{ page.metaDescription }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Créer le</th>
                 <td>{{ page.createdAt ? page.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
+                <th>Mis à jour le </th>
                 <td>{{ page.updatedAt ? page.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_page_index') }}">back to list</a>
+    <a href="{{ path('app_page_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_page_edit', {'id': page.id}) }}">edit</a>
+    <a href="{{ path('app_page_edit', {'id': page.id}) }}">Modifier</a>
 
     {{ include('page/_delete_form.html.twig') }}
 {% endblock %}

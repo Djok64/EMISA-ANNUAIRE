@@ -22,25 +22,26 @@ final class LogController extends AbstractController
     ]);
   }
 
-  #[Route('/new', name: 'app_log_new', methods: ['GET', 'POST'])]
-  public function new(Request $request, EntityManagerInterface $entityManager): Response
-  {
-    $log = new Log($entityManager);
-    $form = $this->createForm(LogType::class, $log);
-    $form->handleRequest($request);
+  //Suppresion de la methode new les log sont générer via le services cela na aucun sens d'en générer manuellement
+  // #[Route('/new', name: 'app_log_new', methods: ['GET', 'POST'])]
+  // public function new(Request $request, EntityManagerInterface $entityManager): Response
+  // {
+  //   $log = new Log($entityManager);
+  //   $form = $this->createForm(LogType::class, $log);
+  //   $form->handleRequest($request);
 
-    if ($form->isSubmitted() && $form->isValid()) {
-      $entityManager->persist($log);
-      $entityManager->flush();
+  //   if ($form->isSubmitted() && $form->isValid()) {
+  //     $entityManager->persist($log);
+  //     $entityManager->flush();
 
-      return $this->redirectToRoute('app_log_index', [], Response::HTTP_SEE_OTHER);
-    }
+  //     return $this->redirectToRoute('app_log_index', [], Response::HTTP_SEE_OTHER);
+  //   }
 
-    return $this->render('log/new.html.twig', [
-      'log' => $log,
-      'form' => $form,
-    ]);
-  }
+  //   return $this->render('log/new.html.twig', [
+  //     'log' => $log,
+  //     'form' => $form,
+  //   ]);
+  // }
 
   #[Route('/{id}', name: 'app_log_show', methods: ['GET'])]
   public function show(Log $log): Response

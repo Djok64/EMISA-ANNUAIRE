@@ -9,27 +9,28 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContactType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
-        $builder
-            ->add('firstName')
-            ->add('lastName')
-            ->add('email')
-            ->add('phone')
-            ->add('privacyAccepted')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
-        ;
-    }
+  public function buildForm(FormBuilderInterface $builder, array $options): void
+  {
+    $builder
+      ->add('firstName', null, [
+        'label' => 'Nom',
+      ])
+      ->add('lastName', null, [
+        'label' => 'Prénom',
+      ])
+      ->add('email')
+      ->add('phone', null, [
+        'label' => 'Téléphone',
+      ])
+      ->add('privacyAccepted', null, [
+        'label' => ' J\'accepte la Politique de confidentialité',
+      ]);
+  }
 
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => Contact::class,
-        ]);
-    }
+  public function configureOptions(OptionsResolver $resolver): void
+  {
+    $resolver->setDefaults([
+      'data_class' => Contact::class,
+    ]);
+  }
 }

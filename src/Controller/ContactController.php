@@ -31,6 +31,8 @@ final class ContactController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+      $contact->setCreatedAt(new \DateTimeImmutable());
+      $contact->setUpdatedAt(new \DateTimeImmutable());
       $entityManager->persist($contact);
       $entityManager->flush();
       $logService->log(
@@ -79,6 +81,7 @@ final class ContactController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+      $contact->setUpdatedAt(new \DateTimeImmutable());
       $entityManager->flush();
       $logService->log(
         $this->getUser(),

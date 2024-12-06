@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page index{% endblock %}
+{% block title %}Gestion des pages{% endblock %}
 
 {% block body %}
-    <h1>Page index</h1>
+    <h1>Gestion des pages</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
+                <th>Titre</th>
+                <th>Contenu</th>
                 <th>Active</th>
                 <th>MetaTitle</th>
                 <th>MetaDescription</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
+                <th>Créer le</th>
+                <th>Mis à jour le</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -31,17 +31,17 @@
                 <td>{{ page.createdAt ? page.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ page.updatedAt ? page.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_page_show', {'id': page.id}) }}">show</a>
-                    <a href="{{ path('app_page_edit', {'id': page.id}) }}">edit</a>
+                    <a href="{{ path('app_page_show', {'id': page.id}) }}">Voir</a>
+                    <a href="{{ path('app_page_edit', {'id': page.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="9">Aucune page trouvé...</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_page_new') }}">Create new</a>
+    <a href="{{ path('app_page_new') }}">Créer nouvelle</a>
 {% endblock %}

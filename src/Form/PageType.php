@@ -9,27 +9,25 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PageType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
-        $builder
-            ->add('title')
-            ->add('content')
-            ->add('active')
-            ->add('metaTitle')
-            ->add('metaDescription')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
-        ;
-    }
+  public function buildForm(FormBuilderInterface $builder, array $options): void
+  {
+    $builder
+      ->add('title', null, [
+        'label' => 'Titre',
+      ])
+      ->add('content', null, [
+        'label' => 'Contenue',
+      ])
+      ->add('active')
+      ->add('metaTitle')
+      ->add('metaDescription')
+    ;
+  }
 
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => Page::class,
-        ]);
-    }
+  public function configureOptions(OptionsResolver $resolver): void
+  {
+    $resolver->setDefaults([
+      'data_class' => Page::class,
+    ]);
+  }
 }

@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Menu index{% endblock %}
+{% block title %}Gestion des menus{% endblock %}
 
 {% block body %}
-    <h1>Menu index</h1>
+    <h1>Gestion des menus</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
+                <th>Titre</th>
                 <th>Url</th>
-                <th>Active</th>
+                <th>Actif</th>
                 <th>Position</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Créer le</th>
+                <th>Mis à jour le</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,17 +29,17 @@
                 <td>{{ menu.createdAt ? menu.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ menu.updatedAt ? menu.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_menu_show', {'id': menu.id}) }}">show</a>
-                    <a href="{{ path('app_menu_edit', {'id': menu.id}) }}">edit</a>
+                    <a href="{{ path('app_menu_show', {'id': menu.id}) }}">Voir</a>
+                    <a href="{{ path('app_menu_edit', {'id': menu.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Aucun menu trouvé...</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_menu_new') }}">Create new</a>
+    <a href="{{ path('app_menu_new') }}">Créer nouveau</a>
 {% endblock %}

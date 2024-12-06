@@ -12,7 +12,7 @@
                 <td>{{ menu.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>Titre</th>
                 <td>{{ menu.title }}</td>
             </tr>
             <tr>
@@ -20,7 +20,7 @@
                 <td>{{ menu.url }}</td>
             </tr>
             <tr>
-                <th>Active</th>
+                <th>Actif</th>
                 <td>{{ menu.active ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
@@ -28,19 +28,19 @@
                 <td>{{ menu.position }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Créer le</th>
                 <td>{{ menu.createdAt ? menu.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
+                <th>Mis à jour le</th>
                 <td>{{ menu.updatedAt ? menu.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_menu_index') }}">back to list</a>
+    <a href="{{ path('app_menu_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_menu_edit', {'id': menu.id}) }}">edit</a>
+    <a href="{{ path('app_menu_edit', {'id': menu.id}) }}">Modifier</a>
 
     {{ include('menu/_delete_form.html.twig') }}
 {% endblock %}

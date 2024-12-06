@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log index{% endblock %}
+{% block title %}Gestion des logs{% endblock %}
 
 {% block body %}
-    <h1>Log index</h1>
+    <h1>Gestion des logs</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Author</th>
-                <th>CreatedAt</th>
+                <th>Auteur</th>
+                <th>Créer le</th>
                 <th>Description</th>
-                <th>ActionType</th>
-                <th>actions</th>
+                <th>Action réalisée</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -25,16 +25,14 @@
                 <td>{{ log.description }}</td>
                 <td>{{ log.actionType }}</td>
                 <td>
-                    <a href="{{ path('app_log_show', {'id': log.id}) }}">show</a>
+                    <a href="{{ path('app_log_show', {'id': log.id}) }}">Voir</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Aucun log trouvé....</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_log_new') }}">Create new</a>
 {% endblock %}

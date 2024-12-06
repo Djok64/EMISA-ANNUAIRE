@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Log{% endblock %}
+{% block title %}Nouveau log{% endblock %}
 
 {% block body %}
-    <h1>Create new Log</h1>
+    <h1>Créer un nouveaux log</h1>
 
     {{ include('log/_form.html.twig') }}
 
-    <a href="{{ path('app_log_index') }}">back to list</a>
+    <a href="{{ path('app_log_index') }}">Retour à la liste</a>
 {% endblock %}

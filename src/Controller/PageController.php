@@ -31,6 +31,8 @@ final class PageController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+      $page->setCreatedAt(new \DateTimeImmutable());
+      $page->setUpdatedAt(new \DateTimeImmutable());
       $entityManager->persist($page);
       $entityManager->flush();
       $logService->log(
@@ -79,6 +81,7 @@ final class PageController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+      $page->setUpdatedAt(new \DateTimeImmutable());
       $entityManager->flush();
       $logService->log(
         $this->getUser(),

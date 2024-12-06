@@ -31,6 +31,8 @@ final class MenuController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+      $menu->setCreatedAt(new \DateTimeImmutable());
+      $menu->setUpdatedAt(new \DateTimeImmutable());
       $entityManager->persist($menu);
       $entityManager->flush();
       $logService->log(
@@ -79,6 +81,7 @@ final class MenuController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+      $menu->setUpdatedAt(new \DateTimeImmutable());
       $entityManager->flush();
       $logService->log(
         $this->getUser(),

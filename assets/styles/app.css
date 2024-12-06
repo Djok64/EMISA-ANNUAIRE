@@ -1,3 +1,8 @@
 body {
   background-color: turquoise;
 }
+
+.bottom-button {
+  display: flex;
+  gap: 30px;
+}
