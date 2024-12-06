@@ -95,6 +95,7 @@ class Message
     return $this;
   }
 
+  //récupérer l'objet et le contenue dans une seule variable pour le logger
   public function getCompleteMessage()
   {
     (string) $completeMessage = ("objet : " . $this->object . " " . "Contenue : " . $this->content . "/ ");

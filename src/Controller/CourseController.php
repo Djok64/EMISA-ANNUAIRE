@@ -46,7 +46,7 @@ final class CourseController extends AbstractController
           $course->getDescription()
         )
       );
-      $this->addFlash('success', 'La formation a été créer avec succès');
+      $this->addFlash('success', 'La formation : ' . $course->getTitle() . '  a été créer avec succès');
 
       return $this->redirectToRoute('app_course_index', [], Response::HTTP_SEE_OTHER);
     }
@@ -93,7 +93,7 @@ final class CourseController extends AbstractController
           $course->getDescription()
         )
       );
-      $this->addFlash('success', 'La formation a été mise a jour avec succès');
+      $this->addFlash('success', 'La formation : ' . $course->getTitle() . '  a été mise a jour avec succès');
 
       return $this->redirectToRoute('app_course_index', [], Response::HTTP_SEE_OTHER);
     }
@@ -120,7 +120,7 @@ final class CourseController extends AbstractController
           $course->getDescription()
         )
       );
-      $this->addFlash('success', 'La formation a été supprimé avec succès');
+      $this->addFlash('success', 'La formation : ' . $course->getTitle() . '  a été supprimé avec succès');
     }
 
     return $this->redirectToRoute('app_course_index', [], Response::HTTP_SEE_OTHER);

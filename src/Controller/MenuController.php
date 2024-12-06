@@ -37,14 +37,13 @@ final class MenuController extends AbstractController
         $this->getUser(),
         'Create',
         sprintf(
-          'Create menu ID %d: Le menu %s url: %s a été créer avec succès.',
+          'Create menu ID %d: Le menu %s url: %s a été crée avec succès.',
           $menu->getId(),
           $menu->getTitle(),
           $menu->getUrl()
         )
       );
-      $this->addFlash('success', 'Le menu a été créer avec succès');
-
+      $this->addFlash('success', 'Le menu : ' . $menu->getTitle() . '  a été crée avec succès');
 
       return $this->redirectToRoute('app_menu_index', [], Response::HTTP_SEE_OTHER);
     }
@@ -91,7 +90,7 @@ final class MenuController extends AbstractController
           $menu->getUrl()
         )
       );
-      $this->addFlash('success', 'Le menu a été mise a jour avec succès');
+      $this->addFlash('success', 'Le menu : ' . $menu->getTitle() . '  a été mis à jour avec succès');
 
       return $this->redirectToRoute('app_menu_index', [], Response::HTTP_SEE_OTHER);
     }
@@ -118,7 +117,7 @@ final class MenuController extends AbstractController
           $menu->getUrl()
         )
       );
-      $this->addFlash('success', 'Le menu a été supprimé avec succès');
+      $this->addFlash('success', 'Le menu : ' . $menu->getTitle() . '  a été supprimé avec succès');
     }
 
     return $this->redirectToRoute('app_menu_index', [], Response::HTTP_SEE_OTHER);

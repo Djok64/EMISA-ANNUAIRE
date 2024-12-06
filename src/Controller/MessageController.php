@@ -39,13 +39,13 @@ final class MessageController extends AbstractController
         $this->getUser(),
         'Create',
         sprintf(
-          'Create Message ID %d: Le Message de %s objet: %s a été créer avec succès.',
+          'Create Message ID %d: Le Message de : %s objet: %s a été créer avec succès.',
           $message->getId(),
           $message->getExpeditor(),
           $message->getCompleteMessage()
         )
       );
-      $this->addFlash('success', 'Le Message a été créer avec succès');
+      $this->addFlash('success', 'Le message : ' . $message->getExpeditor() . '  a été créer avec succès');
 
 
       return $this->redirectToRoute('app_message_index', [], Response::HTTP_SEE_OTHER);
@@ -64,7 +64,7 @@ final class MessageController extends AbstractController
       $this->getUser(),
       'Read',
       sprintf(
-        'Read Message ID %d: Le Message de %s objet: %s a été consulté avec succès.',
+        'Read Message ID %d: Le Message de : %s objet: %s a été consulté avec succès.',
         $message->getId(),
         $message->getExpeditor(),
         $message->getCompleteMessage()
@@ -106,13 +106,13 @@ final class MessageController extends AbstractController
         $this->getUser(),
         'Delete',
         sprintf(
-          'Delete Message ID %d: Le Message de %s %s a été supprimé avec succès.',
+          'Delete Message ID %d: Le Message de :  %s %s a été supprimé avec succès.',
           $message->getId(),
           $message->getExpeditor(),
           $message->getCompleteMessage()
         )
       );
-      $this->addFlash('success', 'Le Message a été créer avec succès');
+      $this->addFlash('success', 'Le message : ' . $message->getExpeditor() . '  a été supprimé avec succès');
     }
 
     return $this->redirectToRoute('app_message_index', [], Response::HTTP_SEE_OTHER);

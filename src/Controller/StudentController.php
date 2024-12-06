@@ -61,7 +61,8 @@ final class StudentController extends AbstractController
           $student->getLastName()
         )
       );
-      $this->addFlash('success', 'L étudiant a été créer avec succès');
+      $this->addFlash('success', 'L étudiant : ' . $student->getFullName() . '  a été créer avec succès');
+
 
       return $this->redirectToRoute('app_student_index', [], Response::HTTP_SEE_OTHER);
     }
@@ -110,7 +111,7 @@ final class StudentController extends AbstractController
           $student->getLastName()
         )
       );
-      $this->addFlash('success', 'L étudiant a était modifié avec succès'); // est censé faire un message a l'utilisateur mais il faut modofier le html.twig associé du formulaire
+      $this->addFlash('success', 'L étudiant : ' . $student->getFullName() . '  a été mis a jour avec succès'); // est censé faire un message a l'utilisateur mais il faut modofier le html.twig associé du formulaire
 
       return $this->redirectToRoute('app_student_index', [], Response::HTTP_SEE_OTHER);
     }
@@ -137,7 +138,7 @@ final class StudentController extends AbstractController
           $student->getLastName()
         )
       );
-      $this->addFlash('success', 'L étudiant a était supprimé avec succès');
+      $this->addFlash('success', 'L étudiant : ' . $student->getFullName() . '  a été supprimé avec succès');
     }
 
     return $this->redirectToRoute('app_student_index', [], Response::HTTP_SEE_OTHER);

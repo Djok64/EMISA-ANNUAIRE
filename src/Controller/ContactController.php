@@ -37,13 +37,13 @@ final class ContactController extends AbstractController
         $this->getUser(),
         'Create',
         sprintf(
-          'Create contact ID %d: Le contact %s %s a été créer avec succès.',
+          'Create contact ID %d: Le contact %s  %s a été crée avec succès.',
           $contact->getId(),
           $contact->getFirstName(),
           $contact->getLastName()
         )
       );
-      $this->addFlash('success', 'Le contact a été créer avec succès');
+      $this->addFlash('success', 'Le contact : ' . $contact->getFullName() . '  a été crée avec succès');
 
       return $this->redirectToRoute('app_contact_index', [], Response::HTTP_SEE_OTHER);
     }
@@ -61,7 +61,7 @@ final class ContactController extends AbstractController
       $this->getUser(),
       'Read',
       sprintf(
-        'Read contact ID %d: Le contact %s %s a été consulté avec succès.',
+        'Read contact ID %d: Le contact %s  %s a été consulté avec succès.',
         $contact->getId(),
         $contact->getFirstName(),
         $contact->getLastName()
@@ -84,13 +84,13 @@ final class ContactController extends AbstractController
         $this->getUser(),
         'Update',
         sprintf(
-          'Update contact ID %d: Le contact %s %s a été mis a jours avec succès.',
+          'Update contact ID %d: Le contact %s  %s a été mis a jour avec succès.',
           $contact->getId(),
           $contact->getFirstName(),
           $contact->getLastName()
         )
       );
-      $this->addFlash('success', 'Le contact a était modifié avec succès');
+      $this->addFlash('success', 'Le contact : ' . $contact->getFullName() . '  a été mis à jour avec succès');
 
       return $this->redirectToRoute('app_contact_index', [], Response::HTTP_SEE_OTHER);
     }
@@ -111,13 +111,13 @@ final class ContactController extends AbstractController
         $this->getUser(),
         'Delete',
         sprintf(
-          'Delete contact ID %d: Le contact %s %s a été supprimé avec succès.',
+          'Delete contact ID %d: Le contact %s  %s a été supprimé avec succès.',
           $contact->getId(),
           $contact->getFirstName(),
           $contact->getLastName()
         )
       );
-      $this->addFlash('success', 'Le contact a était supprimé avec succès');
+      $this->addFlash('success', 'Le contact : ' . $contact->getFullName() . '  a été supprimé avec succès');
     }
 
     return $this->redirectToRoute('app_contact_index', [], Response::HTTP_SEE_OTHER);

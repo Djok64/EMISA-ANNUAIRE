@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Service\LogService;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use
   Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,7 +35,7 @@ final class UserController extends AbstractController
   }
 
   #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
-  public function new(Request $request, EntityManagerInterface $entityManager): Response
+  public function new(Request $request, EntityManagerInterface $entityManager, LogService $logService): Response
   {
     $user = new User();
     $form = $this->createForm(UserType::class, $user);
@@ -50,6 +51,19 @@ final class UserController extends AbstractController
       $entityManager->persist($user);
       $entityManager->flush();
 
+      $logService->log(
+        $this->getUser(),
+        'Create',
+        sprintf(
+          'Create user ID %d: L utilisateur %s  %s a été crée avec succès.',
+          $user->getId(),
+          $user->getEmail(),
+          //ici on converti le json array en string
+          implode(', ', $user->getRoles())
+        )
+      );
+      $this->addFlash('success', 'L utilisateur : ' . $user->getEmail() . '  a été crée avec succès');
+
       return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
 
@@ -60,21 +74,43 @@ final class UserController extends AbstractController
   }
 
   #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-  public function show(User $user): Response
+  public function show(User $user, LogService $logService): Response
   {
+    $logService->log(
+      $this->getUser(),
+      'Read',
+      sprintf(
+        'Read user ID %d: L utilisateur %s  %s a été crée avec succès.',
+        $user->getId(),
+        $user->getEmail(),
+        implode(', ', $user->getRoles())
+      )
+    );
+
     return $this->render('user/show.html.twig', [
       'user' => $user,
     ]);
   }
 
   #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
-  public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
+  public function edit(Request $request, User $user, EntityManagerInterface $entityManager, LogService $logService): Response
   {
     $form = $this->createForm(UserType::class, $user);
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
       $entityManager->flush();
+      $logService->log(
+        $this->getUser(),
+        'Update',
+        sprintf(
+          'Update user ID %d: L utilisateur %s  %s a été mis à jour avec succès.',
+          $user->getId(),
+          $user->getEmail(),
+          implode(', ', $user->getRoles())
+        )
+      );
+      $this->addFlash('success', 'L utilisateur : ' . $user->getEmail() . '  a été mis à jour vec succès');
 
       return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
@@ -86,11 +122,22 @@ final class UserController extends AbstractController
   }
 
   #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
-  public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
+  public function delete(Request $request, User $user, EntityManagerInterface $entityManager, LogService $logService): Response
   {
     if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->getPayload()->getString('_token'))) {
       $entityManager->remove($user);
       $entityManager->flush();
+      $logService->log(
+        $this->getUser(),
+        'Delete',
+        sprintf(
+          'Delete user ID %d: L utilisateur %s  %s a été supprimé avec succès.',
+          $user->getId(),
+          $user->getEmail(),
+          implode(', ', $user->getRoles())
+        )
+      );
+      $this->addFlash('success', 'L utilisateur : ' . $user->getEmail() . '  a été supprimé avec succès');
     }
 
     return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
