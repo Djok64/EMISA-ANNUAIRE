@@ -87,15 +87,15 @@ class Log
 
     return $this;
   }
-  //fonction pour récupérer les log 
-  public function log($user, string $actionType, string $description)
-  {
-    $log = new Log($this->em);
-    $log->setAuthor($user->getEmail());
-    $log->setActionType($actionType);
-    $log->setDescription($description);
-    $log->setCreatedAt(new \DateTimeImmutable());
-    $this->em->persist($log);
-    $this->em->flush();
-  }
+  //fonction pour récupérer les log deplacer desormais dans un service 
+  // public function log($user, string $actionType, string $description)
+  // {
+  //   $log = new Log($this->em);
+  //   $log->setAuthor($user->getEmail());
+  //   $log->setActionType($actionType);
+  //   $log->setDescription($description);
+  //   $log->setCreatedAt(new \DateTimeImmutable());
+  //   $this->em->persist($log);
+  //   $this->em->flush();
+  // }
 }
